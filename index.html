@@ -17,103 +17,95 @@
 
 <body>
 
-  <div class="mainLayout">
+  <!-- HEADER -->
 
-    <!-- LEFT PANEL -->
+  <header>
+
+    <h1>
+      Firmware Uploader
+    </h1>
+
+  </header>
+
+  <!-- MAIN -->
+
+  <div class="mainContainer">
+
+    <!-- LEFT SIDE -->
 
     <div class="leftPanel">
 
-      <div>
+      <div class="section">
 
-        <h1>
-          Firmware Uploader
-        </h1>
+        <label>
+          Board Select
+        </label>
 
-        <button id="connectBtn">
-          Connect
-        </button>
+        <select id="boardSelect"></select>
 
       </div>
 
-      <div class="statusText">
+      <div class="section">
 
-        Browser Serial API Ready
+        <label>
+          Firmware Category
+        </label>
+
+        <select id="categorySelect"></select>
 
       </div>
+
+      <div class="section">
+
+        <label>
+          Firmware
+        </label>
+
+        <select id="firmwareSelect"></select>
+
+      </div>
+
+      <button id="connectBtn">
+
+        Connect Board
+
+      </button>
 
     </div>
 
-    <!-- RIGHT PANEL -->
+    <!-- RIGHT SIDE -->
 
     <div class="rightPanel">
 
-      <div class="card">
+      <button id="flashBtn">
 
-        <div class="topGrid">
+        Upload Firmware
 
-          <div>
+      </button>
 
-            <label>
-              Board Select
-            </label>
+      <div class="progressSection">
 
-            <select id="boardSelect"></select>
+        <div class="progressHeader">
 
-          </div>
+          <span>
+            Upload Progress
+          </span>
 
-          <div>
-
-            <label>
-              Firmware Category
-            </label>
-
-            <select id="categorySelect"></select>
-
-          </div>
-
-          <div>
-
-            <label>
-              Firmware
-            </label>
-
-            <select id="firmwareSelect"></select>
-
-          </div>
+          <span id="progressText">
+            0%
+          </span>
 
         </div>
 
-        <button id="flashBtn">
+        <div class="progressBox">
 
-          Upload Firmware
-
-        </button>
-
-        <div class="progressSection">
-
-          <div class="progressHeader">
-
-            <span>
-              Upload Progress
-            </span>
-
-            <span id="progressText">
-              0%
-            </span>
-
-          </div>
-
-          <div class="progressBox">
-
-            <div id="progressBar"></div>
-
-          </div>
+          <div id="progressBar"></div>
 
         </div>
-
-        <pre id="log"></pre>
 
       </div>
+
+      <pre id="log"></pre>
 
     </div>
 
