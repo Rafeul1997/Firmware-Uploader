@@ -10,21 +10,51 @@ body{
 
   background:#0f172a;
 
+  color:white;
+
   font-family:Arial;
 
-  color:white;
+  height:100vh;
 
   overflow:hidden;
 
 }
 
-/* MAIN LAYOUT */
+/* HEADER */
 
-.mainLayout{
+header{
+
+  width:100%;
+
+  height:80px;
+
+  background:#111827;
 
   display:flex;
 
-  height:100vh;
+  align-items:center;
+
+  padding-left:30px;
+
+  border-bottom:1px solid #334155;
+
+}
+
+header h1{
+
+  margin:0;
+
+  font-size:32px;
+
+}
+
+/* MAIN */
+
+.mainContainer{
+
+  display:flex;
+
+  height:calc(100vh - 80px);
 
 }
 
@@ -32,35 +62,61 @@ body{
 
 .leftPanel{
 
-  width:280px;
+  width:50%;
 
-  background:#111827;
+  padding:40px;
 
-  border-right:1px solid #374151;
-
-  padding:25px;
+  border-right:1px solid #334155;
 
   display:flex;
 
   flex-direction:column;
 
-  justify-content:space-between;
+  justify-content:flex-start;
 
 }
 
-.leftPanel h1{
-
-  margin:0;
+.section{
 
   margin-bottom:30px;
 
-  font-size:32px;
+}
+
+label{
+
+  display:block;
+
+  margin-bottom:10px;
+
+  color:#cbd5e1;
+
+  font-size:16px;
 
 }
 
-#connectBtn{
+select{
 
   width:100%;
+
+  padding:15px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#1e293b;
+
+  color:white;
+
+  font-size:16px;
+
+}
+
+/* CONNECT BUTTON */
+
+#connectBtn{
+
+  margin-top:10px;
 
   padding:16px;
 
@@ -76,8 +132,6 @@ body{
 
   cursor:pointer;
 
-  transition:0.3s;
-
 }
 
 #connectBtn:hover{
@@ -86,90 +140,23 @@ body{
 
 }
 
-.statusText{
-
-  color:#9ca3af;
-
-  font-size:14px;
-
-}
-
 /* RIGHT PANEL */
 
 .rightPanel{
 
-  flex:1;
+  width:50%;
 
-  padding:30px;
-
-  overflow:hidden;
-
-}
-
-.card{
-
-  height:100%;
-
-  background:#1e293b;
-
-  border-radius:20px;
-
-  padding:25px;
+  padding:40px;
 
   display:flex;
 
   flex-direction:column;
-
-  box-shadow:0 0 20px rgba(0,0,0,0.4);
-
-}
-
-/* TOP GRID */
-
-.topGrid{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
-  gap:20px;
-
-}
-
-label{
-
-  display:block;
-
-  margin-bottom:8px;
-
-  color:#cbd5e1;
-
-}
-
-select{
-
-  width:100%;
-
-  padding:14px;
-
-  border:none;
-
-  border-radius:12px;
-
-  background:#334155;
-
-  color:white;
-
-  font-size:16px;
 
 }
 
 /* FLASH BUTTON */
 
 #flashBtn{
-
-  margin-top:25px;
 
   padding:16px;
 
@@ -185,8 +172,6 @@ select{
 
   cursor:pointer;
 
-  transition:0.3s;
-
 }
 
 #flashBtn:hover{
@@ -199,7 +184,7 @@ select{
 
 .progressSection{
 
-  margin-top:25px;
+  margin-top:30px;
 
 }
 
@@ -219,9 +204,9 @@ select{
 
   width:100%;
 
-  height:22px;
+  height:24px;
 
-  background:#334155;
+  background:#1e293b;
 
   border-radius:20px;
 
@@ -241,17 +226,17 @@ select{
 
 }
 
-/* LOG BOX */
+/* LOG */
 
 #log{
 
   flex:1;
 
-  margin-top:25px;
+  margin-top:30px;
 
   background:black;
 
-  border-radius:16px;
+  border-radius:14px;
 
   padding:15px;
 
