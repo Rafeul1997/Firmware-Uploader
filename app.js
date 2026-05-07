@@ -1,84 +1,286 @@
 let port;
 
-const connectBtn = document.getElementById("connectBtn");
-const flashBtn = document.getElementById("flashBtn");
-const logBox = document.getElementById("log");
-const progressBar = document.getElementById("progressBar");
-const firmwareSelect = document.getElementById("firmwareSelect");
+let firmwareData;
+
+const boardSelect =
+document.getElementById(
+  "boardSelect"
+);
+
+const categorySelect =
+document.getElementById(
+  "categorySelect"
+);
+
+const firmwareSelect =
+document.getElementById(
+  "firmwareSelect"
+);
+
+const connectBtn =
+document.getElementById(
+  "connectBtn"
+);
+
+const flashBtn =
+document.getElementById(
+  "flashBtn"
+);
+
+const progressBar =
+document.getElementById(
+  "progressBar"
+);
+
+const logBox =
+document.getElementById(
+  "log"
+);
 
 function log(text){
-  logBox.textContent += text + "\n";
-  logBox.scrollTop = logBox.scrollHeight;
+
+  logBox.textContent +=
+    text + "\n";
+
+  logBox.scrollTop =
+    logBox.scrollHeight;
+
 }
 
-connectBtn.addEventListener("click", async ()=>{
+async function loadConfig(){
+
+  const response =
+    await fetch(
+      "config/firmware.json"
+    );
+
+  firmwareData =
+    await response.json();
+
+  loadBoards();
+
+}
+
+function loadBoards(){
+
+  boardSelect.innerHTML = "";
+
+  Object.keys(
+    firmwareData.boards
+  ).forEach(board=>{
+
+    const option =
+      document.createElement(
+        "option"
+      );
+
+    option.value = board;
+
+    option.textContent =
+      board.toUpperCase();
+
+    boardSelect.appendChild(
+      option
+    );
+
+  });
+
+  loadCategories();
+
+}
+
+function loadCategories(){
+
+  categorySelect.innerHTML =
+    "";
+
+  const board =
+    boardSelect.value;
+
+  const categories =
+    firmwareData.boards[
+      board
+    ];
+
+  Object.keys(categories)
+  .forEach(category=>{
+
+    const option =
+      document.createElement(
+        "option"
+      );
+
+    option.value =
+      category;
+
+    option.textContent =
+      category;
+
+    categorySelect
+    .appendChild(option);
+
+  });
+
+  loadFirmwares();
+
+}
+
+function loadFirmwares(){
+
+  firmwareSelect.innerHTML =
+    "";
+
+  const board =
+    boardSelect.value;
+
+  const category =
+    categorySelect.value;
+
+  const firmwares =
+    firmwareData.boards
+    [board][category];
+
+  firmwares.forEach(fw=>{
+
+    const option =
+      document.createElement(
+        "option"
+      );
+
+    option.value =
+      fw.file;
+
+    option.textContent =
+      fw.name;
+
+    firmwareSelect
+    .appendChild(option);
+
+  });
+
+}
+
+boardSelect.addEventListener(
+  "change",
+  loadCategories
+);
+
+categorySelect.addEventListener(
+  "change",
+  loadFirmwares
+);
+
+loadConfig();
+
+connectBtn.addEventListener(
+"click",
+async ()=>{
 
   try{
 
-    port = await navigator.serial.requestPort();
+    port =
+      await navigator.serial
+      .requestPort();
 
     await port.open({
       baudRate:115200
     });
 
-    log("ESP32 Connected");
+    log(
+      "[INFO] Device Connected"
+    );
 
   }catch(err){
 
-    log("Connection Failed");
+    log(
+      "[ERROR] Connection Failed"
+    );
+
     console.error(err);
 
   }
 
 });
 
-flashBtn.addEventListener("click", async ()=>{
+flashBtn.addEventListener(
+"click",
+async ()=>{
 
   if(!port){
-    alert("Connect ESP32 first");
+
+    alert(
+      "Connect device first"
+    );
+
     return;
   }
 
   try{
 
-    log("Downloading firmware...");
+    const firmwarePath =
+      firmwareSelect.value;
 
-    const response = await fetch(
-      firmwareSelect.value
+    log(
+      "[INFO] Loading firmware..."
     );
 
-    const firmware = await response.arrayBuffer();
+    const response =
+      await fetch(
+        firmwarePath
+      );
 
-    log("Firmware Loaded");
-    log("Starting Flash...");
+    const firmware =
+      await response
+      .arrayBuffer();
 
-    // Fake progress demo
-    // Replace with esptool flashing later
+    log(
+      "[INFO] Firmware Loaded"
+    );
+
+    log(
+      "[INFO] Size: " +
+      firmware.byteLength +
+      " bytes"
+    );
+
+    log(
+      "[INFO] Starting Upload..."
+    );
 
     let progress = 0;
 
-    const timer = setInterval(()=>{
+    const timer =
+      setInterval(()=>{
 
       progress += 10;
 
       progressBar.style.width =
         progress + "%";
 
-      log("Uploading " + progress + "%");
+      log(
+        "[INFO] Uploading " +
+        progress +
+        "%"
+      );
 
       if(progress >= 100){
 
         clearInterval(timer);
 
-        log("Flash Complete");
+        log(
+          "[SUCCESS] Upload Complete"
+        );
 
       }
 
-    },500);
+    },400);
 
   }catch(err){
 
-    log("Flash Failed");
+    log(
+      "[ERROR] Upload Failed"
+    );
+
     console.error(err);
 
   }
