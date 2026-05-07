@@ -34,11 +34,11 @@
 
     "arduino": {
 
-      "Blink": [
+      "Basic": [
 
         {
-          "name":"Arduino Blink",
-          "file":"firmware/arduino/blink/blink.bin"
+          "name":"UNO/NANO Blink",
+          "file":"firmware/arduino/basic/blink.ino.hex"
         }
 
       ],
