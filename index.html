@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firmware Uploader</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ESPTool JS -->
+  <script src="https://cdn.jsdelivr.net/npm/esptool-js@0.5.4/bundle.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>ESP32 Firmware Uploader</h1>
+
+    <div class="card">
+
+      <label>Select Firmware</label>
+
+      <select id="firmwareSelect">
+        <option value="firmware/esp32/blink.bin">
+          Blink Firmware
+        </option>
+      </select>
+
+      <button id="connectBtn">
+        Connect ESP32
+      </button>
+
+      <button id="flashBtn">
+        Upload Firmware
+      </button>
+
+      <div class="progressBox">
+        <div id="progressBar"></div>
+      </div>
+
+      <pre id="log"></pre>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
