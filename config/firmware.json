@@ -1,17 +1,58 @@
 {
-  "firmwares":[
+  "boards": {
 
-    {
-      "name":"ESP32 Blink",
-      "type":"esp32",
-      "file":"firmware/esp32/blink.bin"
+    "esp32": {
+
+      "Blink": [
+
+        {
+          "name":"ESP32 Blink",
+          "file":"firmware/esp32/blink/blink.bin"
+        }
+
+      ],
+
+      "Robot": [
+
+        {
+          "name":"ESP32 Robot",
+          "file":"firmware/esp32/robot/robot.bin"
+        }
+
+      ],
+
+      "Sensor": [
+
+        {
+          "name":"ESP32 Sensor",
+          "file":"firmware/esp32/sensor/sensor.bin"
+        }
+
+      ]
+
     },
 
-    {
-      "name":"Arduino Blink",
-      "type":"arduino",
-      "file":"firmware/arduino/blink.bin"
+    "arduino": {
+
+      "Blink": [
+
+        {
+          "name":"Arduino Blink",
+          "file":"firmware/arduino/blink/blink.bin"
+        }
+
+      ],
+
+      "Test": [
+
+        {
+          "name":"Arduino Test",
+          "file":"firmware/arduino/test/test.bin"
+        }
+
+      ]
+
     }
 
-  ]
+  }
 }
