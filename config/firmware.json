@@ -1,0 +1,17 @@
+{
+  "firmwares":[
+
+    {
+      "name":"ESP32 Blink",
+      "type":"esp32",
+      "file":"firmware/esp32/blink.bin"
+    },
+
+    {
+      "name":"Arduino Blink",
+      "type":"arduino",
+      "file":"firmware/arduino/blink.bin"
+    }
+
+  ]
+}
