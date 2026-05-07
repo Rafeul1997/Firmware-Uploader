@@ -32,6 +32,11 @@ document.getElementById(
   "progressBar"
 );
 
+const progressText =
+document.getElementById(
+  "progressText"
+);
+
 const logBox =
 document.getElementById(
   "log"
@@ -40,7 +45,7 @@ document.getElementById(
 function log(text){
 
   logBox.textContent +=
-    text + "\n";
+    text + "\\n";
 
   logBox.scrollTop =
     logBox.scrollHeight;
@@ -172,6 +177,8 @@ categorySelect.addEventListener(
 
 loadConfig();
 
+/* CONNECT */
+
 connectBtn.addEventListener(
 "click",
 async ()=>{
@@ -201,6 +208,8 @@ async ()=>{
   }
 
 });
+
+/* FLASH */
 
 flashBtn.addEventListener(
 "click",
@@ -255,6 +264,9 @@ async ()=>{
       progress += 10;
 
       progressBar.style.width =
+        progress + "%";
+
+      progressText.textContent =
         progress + "%";
 
       log(
